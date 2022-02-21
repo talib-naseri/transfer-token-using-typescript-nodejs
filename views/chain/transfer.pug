@@ -1,0 +1,45 @@
+extends ../layout
+
+block content   
+    .page-header
+        h1 Transfer Tokens
+    hr
+
+    h2.mt-5 Account Address:
+    p #{accountAddress}
+
+    h2.mt-5 Balances:
+    p BNB: #{bnbBalance}
+    p GLD: #{gldBalance}
+
+    h2.mt-5 Send Tokens/Coin 
+    form(method = 'POST' action='/transfer').mt-3
+        .form-group.row
+            .col-sm-3
+                label To:
+            .col-sm-9
+                input.form-control(type='text', name='to', placeholder='Enter an Address')
+        .form-group.row
+            .col-sm-3
+                label Amount:
+            .col-sm-9
+                input.form-control(type='number',step='any' name='amount' placeholder='Enter the amount')
+
+        .form-group.row
+            .col-sm-3
+                label Token Type:
+            .col-sm-9
+                select.custom-select(name='type')
+                    option(selected=true) Select type of token/coin
+                    option(value="bnb") Binance Coin
+                    option(value="gld") Gold Token 
+
+        .form-group.row
+            .col-sm-3
+                p
+            .col-sm-6
+                button.btn.btn-primary.btn-block(type='submit') Send
+            .col-sm-3
+                p
+            
+
