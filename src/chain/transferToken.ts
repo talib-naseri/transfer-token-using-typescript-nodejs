@@ -31,20 +31,15 @@ export  const transferView = async (req: Request, res:Response) => {
 export const transfer = async (req:Request, res:Response) => {
 
     const transactionData = req.body;
-    console.log(req.body); //test...
-
-    // const bnb = await web3.eth.getBalance(account.address);
-    // const gld = await goldTokenContract.methods.balanceOf(account.address).call({from: account.address});
 
     if(transactionData.type == "gld"){
 
         // get tx data
         const txData = await goldTokenContract.methods.transfer(transactionData.to, web3.utils.toWei(transactionData.amount)).encodeABI();
-
-        console.log(txData);
         
         // create tx
         const tx = {
+            to: goldTokenContract.options.address,
             data: txData,
             gas: "5419012",
         };
